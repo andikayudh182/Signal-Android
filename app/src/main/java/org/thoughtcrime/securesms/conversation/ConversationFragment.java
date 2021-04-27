@@ -159,7 +159,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
-
+import java.lang.StringBuffer;
 import static org.webrtc.ContextUtils.getApplicationContext;
 
 @SuppressLint("StaticFieldLeak")
@@ -748,6 +748,7 @@ public class ConversationFragment extends LoggingFragment {
       CharSequence body = message.getDisplayBody(requireContext());
       if (!TextUtils.isEmpty(body)) {
         if (bodyBuilder.length() > 0) {
+
           bodyBuilder.append('\n');
         }
         bodyBuilder.append(body);
@@ -765,7 +766,9 @@ public class ConversationFragment extends LoggingFragment {
     buildRemotePinConfirmationDialog(messageRecordsPin).show();
   }
 
-  // Handle Pin Alert Dialog - Bima Putra S
+  /*Modifikasi Handle Pin Alert Dialog - Bima Putra S
+    Menjadi Handle  Reverse Message - Andika Yudha Riyanto
+  * */
   private AlertDialog.Builder buildRemotePinConfirmationDialog(Set<MessageRecord> messageRecords) {
     Context             context       = requireActivity();
     int                 messagesCount = messageRecords.size();
@@ -775,13 +778,23 @@ public class ConversationFragment extends LoggingFragment {
     builder.setCancelable(true);
 
     builder.setPositiveButton(R.string.ConversationFragment_pin_for_me, (dialog, which) -> {
-      // Show ID Message for Data.
+      // Show Message for Data.
       for (MessageRecord messageRecord : messageRecords) {
         Context con = getApplicationContext();
-        int duration = 1000;
+        int duration = 3500;
+          String myString = messageRecord.getBody().toString();
+          StringBuffer c = new StringBuffer(myString);
+          c.reverse();
+          String data = c.toString();
+          if (myString.equals(data)){
+            Toast toast = Toast.makeText(con, String.valueOf(c.reverse()) + " \nPesan ini palindrome", duration);
+            toast.show();
+          } else {
+            Toast toast = Toast.makeText(con, String.valueOf(c.reverse()) + " \nPesan ini bukan palindrome", duration);
+            toast.show();
+          }
 
-        Toast toast = Toast.makeText(con, String.valueOf(messageRecord.getId()), duration);
-        toast.show();
+
       }
       //nothing
     });
@@ -1695,7 +1708,10 @@ public class ConversationFragment extends LoggingFragment {
         case R.id.action_forward:     handleForwardMessage(conversationMessage);                                            return true;
         case R.id.action_download:    handleSaveAttachment((MediaMmsMessageRecord) conversationMessage.getMessageRecord()); return true;
         // Tambahan Confirm Buat PIN - Bima
-        //case R.id.action_pin_msg:     handlePinMessages(SetUtil.newHashSet(conversationMessage));
+        case R.id.action_pin_msg:     handlePinMessages(SetUtil.newHashSet(conversationMessage));
+
+        //Tambahan Confirm Buat Reverse - Andika
+
         default:                                                                                                            return false;
       }
     }
@@ -1804,7 +1820,8 @@ public class ConversationFragment extends LoggingFragment {
 
     public void show() {
       if (textView.getText() == null || textView.getText().length() == 0) {
-        return;
+
+        return ;
       }
 
       if (pendingHide) {

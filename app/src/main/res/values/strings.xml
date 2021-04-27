@@ -290,8 +290,8 @@
         <item quantity="other">Delete selected messages?</item>
     </plurals>
     <plurals name="ConversationFragment_pin_selected_messages">
-        <item quantity="one">Pin pesan ini okee ??</item>
-        <item quantity="other">Pin pesan ini okee ??</item>
+        <item quantity="one">Reverse message ini ??</item>
+        <item quantity="other">Reverse message ini  ??</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -318,7 +318,7 @@
     <string name="ConversationFragment_deleting">Deleting</string>
     <string name="ConversationFragment_deleting_messages">Deleting messages…</string>
     <string name="ConversationFragment_delete_for_me">Delete for me</string>
-    <string name="ConversationFragment_pin_for_me">Yesss sirr, Pin pleaseee!!</string>
+    <string name="ConversationFragment_pin_for_me">Yes , Reverse pesan ini</string>
     <string name="ConversationFragment_delete_for_everyone">Delete for everyone</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">This message will be deleted for everyone in the conversation if they’re on a recent version of Signal. They will be able to see that you deleted a message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Original message not found</string>
@@ -3075,6 +3075,7 @@
     <string name="WallpaperCropActivity__error_setting_wallpaper">Error setting wallpaper.</string>
     <string name="WallpaperCropActivity__blur_photo">Blur photo</string>
     <string name="pin_message">Pin Message</string>
+    <string name="reverse_message">Reverse Message</string>
 
     <!-- EOF -->
 
